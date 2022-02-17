@@ -1,0 +1,24 @@
+#!/bin/bash
+
+func() {
+	for i in *; do
+		if [ -d $i ]; then
+			cd $i 
+			path+="$i/"
+			func
+			cd .. 
+		else
+			stat -c "%A %s $path%n" $i
+			((k++))
+		fi
+	done
+}
+path="$1/"
+k=0
+if [ ! -d "$1" ]; then
+	echo "Directory "$1" not founded" > errors
+else
+cd $1 2> errors
+func
+echo Listed $k files
+fi

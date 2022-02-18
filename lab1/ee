@@ -1,0 +1,2 @@
+#!/bin/bash
+stat -c "%A %s %n" $(find .  -depth -type f)

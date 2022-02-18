@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -d "$1" ]; then
+	
+	k=0
+	array=$(find . -depth -type f)
+	for i in $array
+	do
+		stat -c "%A %s %n" $i
+		((k++)) 
+	done
+	echo Listed $k files
+else
+	echo "Directory "$1" not founded">&2
+fi	
+  
+	
+	
+
+
+

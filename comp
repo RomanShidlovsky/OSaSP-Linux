@@ -1,4 +1,0 @@
-#!/bin/bash
-gcc -o "$2" "$1" 2> errors || echo "Not compilated" >&2 && ./"$2" 2>errors
-
-

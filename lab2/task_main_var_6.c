@@ -1,10 +1,13 @@
-﻿#include <dirent.h>
+#include <dirent.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <limits.h>
+#include <errno.h>
+
 
 int total = 0;
 
@@ -66,6 +69,24 @@ int printDirContent(char * path, int min, int max, int outFile)
     return 0;
 }
 
+long validateInp(char* Inp)
+{
+    char *endptr;
+    long res = strtol(Inp, &endptr, 10);
+
+    if ((errno == ERANGE && (res == LONG_MAX || res == LONG_MIN)) || (errno != 0 && res == 0)) {
+       perror("strtol");
+       return -1;
+    }
+
+    if (endptr == Inp) {
+       fprintf(stderr, "Second and third parameter should have int value\n");
+       return -1;
+    }
+
+    return res;
+}
+
 int main(int argc, char *argv[])
 {
   if (argc<5){
@@ -73,19 +94,13 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  char *endptr;
-  int min =(int) strtol(argv[2],&endptr,10);
-
-  if (endptr[0]!='\0'){
-      perror("Second parameter should have int value\n");
+  long min;
+  if ( (min = validateInp(argv[2])) == -1)
       return -3;
-  }
 
-  int max=(int) strtol(argv[3],&endptr,10);
-  if (endptr[0]!='\0'){
-      perror("Third parameter should have int value\n");
+  long max;
+  if ( (max = validateInp(argv[3])) == -1)
       return -3;
-  }
 
   char* outFileName = argv[4];
   int outFile = open(outFileName, O_CREAT|O_RDWR|O_TRUNC, 0666); //6 = rw
@@ -102,4 +117,6 @@ int main(int argc, char *argv[])
   return errorCode;
 
 }
+
+
 

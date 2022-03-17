@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
       return -3;
 
   char* outFileName = argv[4];
-  int outFile = open(outFileName, O_CREAT|O_RDWR|O_TRUNC, 0666); //6 = rw
+  int outFile = open(outFileName, O_CREAT|O_WRONLY|O_TRUNC, 0666); //6 = rw
   if (outFile == -1){
       fprintf(stderr,"Error while opening %s\n", outFileName);
       return -2;

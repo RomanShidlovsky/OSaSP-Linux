@@ -5,8 +5,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <errno.h>
-#include <ctype.h>
+
 int total = 0;
 
 int findSize(char* fileName){

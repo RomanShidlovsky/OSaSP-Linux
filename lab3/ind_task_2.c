@@ -144,7 +144,6 @@ int main(int argc, char *argv[])
             }
             rewinddir(destDir);
         }
-
     }
 
     for (int i = 0; i < procRun; i++)

@@ -33,7 +33,6 @@ long validateNum(char *str)
     }
 
     return val;
-
 }
 
 char* getFullName(char *path, char *name)
@@ -78,8 +77,8 @@ void fileCopy(char *srcFileName,char *destFileName)
         }
         procRun--;
     }
-
 }
+
 int main(int argc, char *argv[])
 {
     if (argc < 4)

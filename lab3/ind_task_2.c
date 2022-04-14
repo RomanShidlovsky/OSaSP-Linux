@@ -20,12 +20,14 @@ long validateNum(char *str)
     /* Check for various possible errors */
 
     if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN))
-            || (errno != 0 && val == 0)) {
+            || (errno != 0 && val == 0)) 
+    {
         perror("strtol");
         return -1;
     }
 
-    if (endptr == str) {
+    if (endptr == str) 
+    {
         fprintf(stderr, "No digits were found\n");
         return -1;
     }

@@ -3,9 +3,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-
 #define TIMEZONE 3
 #define NO_OPTIONS 0
+
 void printTimeAndPid(char* processName)
 {
     struct timeval tv;
@@ -65,7 +65,6 @@ int main()
     {
         perror("1st child create error");
     }
-
 
     return 0;
 }

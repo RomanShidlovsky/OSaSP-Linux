@@ -35,10 +35,10 @@ long validateNum(char *str)
     return val;
 }
 
-char* getFullName(char *path, char *name)
+char* getFullPath(char *path, char *name)
 {
     char *buff;
-    buff = (char*)malloc(NAME_MAX*sizeof(char));
+    buff = (char*)malloc(PATH_MAX*sizeof(char));
     if (buff == NULL)
     {
         perror("Allocation error");
@@ -135,8 +135,8 @@ int main(int argc, char *argv[])
             }
             if (!found)
             {
-                char *srcFileName = getFullName(srcPath, srcDirent->d_name);
-                char *destFileName = getFullName(destPath, srcDirent->d_name);
+                char *srcFileName = getFullPath(srcPath, srcDirent->d_name);
+                char *destFileName = getFullPath(destPath, srcDirent->d_name);
 
                 fileCopy(srcFileName, destFileName);
                 free(srcFileName);
